@@ -63,6 +63,6 @@ Thumbs.db
 # pnpm-lock.yaml
 
 # Vitepress
-.vitepress/dist/
+# .vitepress/dist/
 .vitepress/cache/
 .vitepress/temp/
