@@ -1,0 +1,26 @@
+{
+  "name": "kyqn",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/izhouliren/kyqn#readme",
+  "bugs": {
+    "url": "https://github.com/izhouliren/kyqn/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/izhouliren/kyqn.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^2.0.0-alpha.15"
+  }
+}
