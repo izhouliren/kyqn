@@ -2,27 +2,40 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "My Awesome Project",
-  description: "A VitePress Site",
+  title: "开源青年",
+  description: "一个VitePress网站",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: '首页', link: '/' },
+      { text: '文稿', link: '/official-examples/markdown-articles' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '文稿',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          {
+            text: '官方示例',
+            items: [
+              { text: 'Markdown文稿', link: '/official-examples/markdown-articles' },
+              { text: '运行时API文稿', link: '/official-examples/api-articles' }
+            ]
+          },
+          {
+            text: 'Linux 30年',
+            items: [
+              { text: '被嘲笑是"黑客玩具"？Linux是如何在微软和UNIX的夹缝中逆天改命的？', link: '/linux-30-years/linux-history' }
+            ]
+          }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+      { icon: 'bilibili', link: 'https://space.bilibili.com/51420401' },
+      { icon: 'wechat', link: '#', ariaLabel: '公众号' }
     ]
   }
 })
