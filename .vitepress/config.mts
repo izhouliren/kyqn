@@ -36,7 +36,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+      { icon: 'github', link: 'https://gitcode.com/ozhouliren' },
       { icon: 'bilibili', link: 'https://space.bilibili.com/51420401' },
       { icon: 'wechat', link: '#', ariaLabel: '公众号' }
     ]
