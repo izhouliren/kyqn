@@ -1,23 +1,14 @@
 ---
-title: 未命名
+outline: deep
+title: EndeavourOS 安装初始化脚本
+description: EndeavourOS安装初始化脚本的使用方法和注意事项
 ---
+`ezendeavouros_post_install.sh` - 是一个用于配置 EndevaourOS 的脚本。EndevaourOS 是一个基于 Arch Linux 的发行版。在安装后还要花精力进行配置，才能使系统更加易用。脚本对这些配置进行了自动化处理，包括：
 
-这是一篇新创建的 VitePress 文章。
+- 设置系统语言为中文
+- 安装中文字体
+- 安装和配置 Fcitx5 输入法框架
 
-## 简介
-
-欢迎阅读这篇未命名的文章！
-
-## 内容
-
-### 章节一
-
-这里是章节一的内容。
-
-### 章节二
-
-这里是章节二的内容。
-
-## 结论
-
-这是文章的结论部分。
+### 用法：
+- 下载脚本：`wget https://gitcode.com/ozhouliren/mlga/blob/main/ezendeavouros_post_install.sh`
+- 运行脚本：`bash ./ezendeavouros_post_install.sh`
