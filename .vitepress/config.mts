@@ -27,7 +27,10 @@ export default defineConfig({
             items: [
               { text: '被嘲笑是"黑客玩具"？Linux是如何在微软和UNIX的夹缝中逆天改命的？', link: '/linux-30-years/linux-history' }
             ]
-          }
+          },
+          { text: 'EndevaourOS 适中化设置', link: '/articles/endeavouros-moderate-setup' },
+          { text: 'CachyOS 安装初始化脚本', link: '/articles/cachyos-install-script' },
+            
         ]
       }
     ],
