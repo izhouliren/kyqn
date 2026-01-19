@@ -12,6 +12,6 @@ description: CachyOS安装初始化脚本的使用方法和注意事项
 
 ### 用法
 
-- 下载脚本：`wget https://gitcode.com/ozhouliren/mlga/ezcachyos_install.sh`
+- 下载脚本：`wget https://gitcode.com/ozhouliren/mlga/blob/main/ezcachyos_install.sh`
 - 运行脚本：`bash ./ezcachyos_install.sh`
 - 适用于 CachyOS 251129 版本。
