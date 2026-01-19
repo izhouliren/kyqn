@@ -39,6 +39,12 @@ export default defineConfig({
       { icon: 'github', link: 'https://gitcode.com/ozhouliren' },
       { icon: 'bilibili', link: 'https://space.bilibili.com/51420401' },
       { icon: 'wechat', link: '#', ariaLabel: '公众号' }
-    ]
+    ],
+    
+    // GitHub 编辑链接配置
+    editLink: {
+      pattern: 'https://github.com/izhouliren/kyqn/edit/main/:path',
+      text: '在 GitHub 上编辑此页'
+    }
   }
 })
