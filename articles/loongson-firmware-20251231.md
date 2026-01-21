@@ -6,7 +6,7 @@ description: 介绍龙芯固件 20251231 版本的新功能和改进
 
 ### 重磅更新
 
-- 支持 MultiArchUefi
+- MultiArchUefi 多架构 UEFI 固件， 支持 AMD 最新的 RX5000-9000 系列的显卡。
 
 ### 固件下载
 
