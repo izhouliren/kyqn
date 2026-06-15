@@ -16,6 +16,8 @@
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@fontsource/noto-sans-sc": "^5.2.9",
     "@fontsource/spline-sans-mono": "^5.2.8",
-    "marked": "^18.0.5"
+    "highlight.js": "^11.11.1",
+    "marked": "^18.0.5",
+    "marked-highlight": "^2.2.4"
   }
 }

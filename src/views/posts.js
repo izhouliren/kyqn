@@ -109,6 +109,50 @@ export function postDetailView(main, params) {
       <hr style="border:none;border-top:1px dashed var(--color-text-muted);opacity:0.3;margin:32px 0 16px;">
       <p><a class="link" href="#/posts">← 返回列表</a></p>
     `;
+
+    // 给每个代码块加上 copy 按钮
+    body.querySelectorAll('pre').forEach((pre) => {
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'copy';
+      btn.addEventListener('click', () => {
+        const code = pre.querySelector('code');
+        const text = code ? code.textContent : pre.textContent;
+        const doCopy = () => {
+          btn.textContent = 'copied!';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.textContent = 'copy';
+            btn.classList.remove('copied');
+          }, 1500);
+        };
+        const doFail = () => {
+          btn.textContent = 'failed';
+          setTimeout(() => { btn.textContent = 'copy'; }, 2000);
+        };
+        // Copy API（需要 HTTPS）
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(doCopy).catch(doFail);
+        } else {
+          // Fallback: textarea 选中法（HTTP 下也能用）
+          try {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            doCopy();
+          } catch (_) {
+            doFail();
+          }
+        }
+      });
+      pre.style.position = 'relative';
+      pre.appendChild(btn);
+    });
   })();
 
   // 4. 返回 cleanup：路由切走时被 router 调用

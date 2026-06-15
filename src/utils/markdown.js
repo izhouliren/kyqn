@@ -6,6 +6,45 @@
 // 3. prefetch() 暴露给 view，在 hover 文章列表项时预取
 
 import { marked } from 'marked';
+import { markedHighlight } from 'marked-highlight';
+import hljs from 'highlight.js';
+import bash from 'highlight.js/lib/languages/bash';
+import python from 'highlight.js/lib/languages/python';
+import javascript from 'highlight.js/lib/languages/javascript';
+import typescript from 'highlight.js/lib/languages/typescript';
+import json from 'highlight.js/lib/languages/json';
+import yaml from 'highlight.js/lib/languages/yaml';
+import css from 'highlight.js/lib/languages/css';
+import xml from 'highlight.js/lib/languages/xml';
+import c from 'highlight.js/lib/languages/c';
+import cpp from 'highlight.js/lib/languages/cpp';
+import rust from 'highlight.js/lib/languages/rust';
+import go from 'highlight.js/lib/languages/go';
+import makefile from 'highlight.js/lib/languages/makefile';
+import diff from 'highlight.js/lib/languages/diff';
+import ini from 'highlight.js/lib/languages/ini';
+import dockerfile from 'highlight.js/lib/languages/dockerfile';
+import sql from 'highlight.js/lib/languages/sql';
+
+hljs.registerLanguage('bash', bash);
+hljs.registerLanguage('python', python);
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('typescript', typescript);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('yaml', yaml);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('html', xml);
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('c', c);
+hljs.registerLanguage('cpp', cpp);
+hljs.registerLanguage('rust', rust);
+hljs.registerLanguage('go', go);
+hljs.registerLanguage('makefile', makefile);
+hljs.registerLanguage('diff', diff);
+hljs.registerLanguage('ini', ini);
+hljs.registerLanguage('dockerfile', dockerfile);
+hljs.registerLanguage('sql', sql);
+hljs.registerLanguage('shell', bash);
 import { posts as postsMeta } from '../data/posts.js';
 
 // Vite glob：让 build 时每篇 .md 变成独立 chunk，dev 也能取到
@@ -21,6 +60,18 @@ renderer.link = ({ href, title, text, tokens }) => {
   }
   return html;
 };
+
+marked.use(markedHighlight({
+  langPrefix: 'hljs language-',
+  highlight(code, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(code, { language: lang }).value;
+      } catch (_) {}
+    }
+    return code;
+  }
+}));
 
 marked.setOptions({
   gfm: true,

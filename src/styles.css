@@ -966,6 +966,29 @@ main {
   max-width: 780px;
 }
 
+/* 大屏下文章放宽并居中，减少左右留白 */
+@media (min-width: 1800px) {
+  .article {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* 大屏下放大字号和宽度，保持可读行宽 */
+@media (min-width: 2000px) {
+  .article {
+    max-width: 960px;
+    font-size: 16px;
+  }
+}
+@media (min-width: 2800px) {
+  .article {
+    max-width: 1100px;
+    font-size: 17px;
+  }
+}
+
 .article h1 {
   font-size: 22px;
   font-weight: 700;
@@ -1135,8 +1158,8 @@ main {
 }
 
 .article pre {
-  background: var(--color-text);
-  color: var(--color-text-inverted);
+  background: #1a1a1a;   /* 固定深色终端背景 */
+  color: #d4d4d4;        /* 固定浅色文字 */
   padding: 12px 16px;
   overflow-x: auto;
   margin: 14px 0;
@@ -1144,6 +1167,36 @@ main {
   line-height: 1.6;
   font-family: 'JetBrains Mono', 'Spline Sans Mono', monospace;
   position: relative;
+  border: 1px solid color-mix(in srgb, #d4d4d4 15%, transparent);
+}
+
+/* 代码块 copy 按钮 */
+.copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  background: color-mix(in srgb, #d4d4d4 12%, transparent);
+  color: #d4d4d4;
+  border: 1px solid color-mix(in srgb, #d4d4d4 20%, transparent);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.1s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+pre:hover .copy-btn {
+  opacity: 1;
+}
+.copy-btn:hover {
+  background: color-mix(in srgb, #d4d4d4 25%, transparent);
+}
+.copy-btn.copied {
+  background: color-mix(in srgb, var(--color-primary) 70%, transparent);
+  border-color: var(--color-primary);
 }
 
 .article pre::before {
@@ -1382,4 +1435,68 @@ main {
   .list-item .arrow {
     display: none; /* 触屏用不到 hover arrow */
   }
+}
+
+
+/* ==========================================================================
+   highlight.js 覆盖（跟站点 terminal 风格统一）
+   ========================================================================== */
+.article pre code.hljs {
+  padding: 0;
+  background: transparent;
+  font-size: 12px;
+  line-height: 1.6;
+  font-family: 'JetBrains Mono', 'Spline Sans Mono', monospace;
+  color: inherit;
+}
+
+/* 代码块顶部 "code" 标签 */
+.article pre::before {
+  content: 'code';
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.35;
+  font-family: var(--font-mono);
+}
+
+/* 行号区（如果有）放在最左 */
+.article pre code.hljs .hljs-ln-numbers {
+  opacity: 0.4;
+  user-select: none;
+  padding-right: 12px;
+  text-align: right;
+}
+
+/* 代码块内文本选择颜色 */
+.article pre code.hljs ::selection {
+  background: var(--color-primary);
+  color: var(--color-text-inverted);
+}
+
+/* 代码块内的高亮行 */
+.article pre code.hljs .hljs-line-highlight {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  margin: 0 -12px;
+  padding: 0 12px;
+}
+
+/* inline code 保持现有样式不变 */
+.article code:not(.hljs) {
+  background: color-mix(in srgb, #1e1e1e 10%, transparent);
+  color: var(--color-primary);
+  padding: 1px 6px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', 'Spline Sans Mono', monospace;
+  border-radius: 0;
+}
+
+/* 暗色/亮色适配：覆盖部分 highlight.js 默认颜色 */
+/* 亮色模式下，代码块文字对比度微调 */
+:root:not(.dark) .article pre code.hljs {
+  color: #e1e4e8;  /* github-dark 的默认文字色在亮色下也够用 */
 }
