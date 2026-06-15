@@ -22,7 +22,7 @@ export function projectsView(main) {
     li.innerHTML = `
       <span class="key">${p.name}</span>
       <span class="val">— ${p.desc}</span>
-      <a class="link" href="${p.link}" target="${p.link === '#' ? '_self' : '_blank'}" rel="noopener" style="margin-left:auto;font-size:11px;">↗</a>
+      <a class="link" href="${p.link}" target="${p.link === '#' ? '_self' : '_blank'}" rel="noopener" style="margin-left:6px;">↗</a>
     `;
     ul.appendChild(li);
   });

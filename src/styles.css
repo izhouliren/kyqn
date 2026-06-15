@@ -10,6 +10,8 @@
   --color-text-muted: #6e6e6e;
   --color-text-inverted: #f8f8f8;
   --color-primary: #e94f0d;
+  --font-base: clamp(13px, 0.25vw + 12px, 15px);
+  font-size: var(--font-base);
   --font-mono: 'Spline Sans Mono', 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
   --font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif CN', 'Songti SC', SimSun, '宋体', serif;
   --font-sans: 'Noto Sans SC', 'Source Han Sans SC', 'Source Han Sans CN', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
@@ -58,7 +60,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   font-family: var(--font-site); /* SiteFont: 英文 mono + 中文思源黑体 */
-  font-size: 13px;
+  font-size: 1rem;
   line-height: 1.5;
   min-height: 100vh;
 }
@@ -178,7 +180,7 @@ main {
   color: var(--color-text);
   text-transform: uppercase;
   padding: 0 6px;
-  font-size: 14px;
+  font-size: 1.077rem;
   font-weight: 500;
   text-decoration: none;
   position: relative;
@@ -233,7 +235,7 @@ main {
   color: var(--color-text-muted);
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 0.923rem;
   display: flex;
 }
 
@@ -295,7 +297,7 @@ main {
   gap: 4px;
   margin-left: 12px;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 0.923rem;
   font-weight: 500;
   display: flex;
   flex-wrap: wrap;
@@ -311,7 +313,7 @@ main {
   background-color: var(--color-primary);
   color: var(--color-text-inverted);
   padding: 0 6px;
-  font-size: 11px;
+  font-size: 0.846rem;
 }
 
 .terminal-body {
@@ -345,7 +347,7 @@ main {
 .boot {
   color: var(--color-text);
   padding: 24px 0;
-  font-size: 12px;
+  font-size: 0.923rem;
   line-height: 2;
   overflow: hidden;
 }
@@ -450,7 +452,7 @@ main {
   color: var(--color-bg);
   flex-direction: column;
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: 1.077rem;
   display: flex;
 }
 
@@ -463,7 +465,7 @@ main {
   color: var(--color-text-muted);
   opacity: 0.5;
   pointer-events: none;
-  font-size: 12px;
+  font-size: 0.923rem;
   position: absolute;
   top: 6px;
   right: 10px;
@@ -474,7 +476,7 @@ main {
   cursor: pointer;
   background: 0 0;
   border: none;
-  font-size: 12px;
+  font-size: 0.923rem;
   font-family: inherit;
 }
 
@@ -489,7 +491,7 @@ main {
   border: none;
   margin-top: 10px;
   padding: 8px 14px;
-  font-size: 14px;
+  font-size: 1.077rem;
   display: inline-block;
   text-decoration: none;
   font-family: inherit;
@@ -521,7 +523,7 @@ main {
   align-items: baseline;
   gap: 16px;
   padding: 10px 16px;
-  font-size: 13px;
+  font-size: 1rem;
   display: flex;
   transition: background 0.1s;
 }
@@ -536,7 +538,7 @@ main {
 
 .list-item .date {
   color: var(--color-text-muted);
-  font-size: 11px;
+  font-size: 0.846rem;
   flex-shrink: 0;
   width: 80px;
   letter-spacing: 0.05em;
@@ -552,7 +554,7 @@ main {
 }
 
 .list-item .tag {
-  font-size: 10px;
+  font-size: 0.769rem;
   text-transform: uppercase;
   color: var(--color-text-muted);
   border: 1px solid var(--color-text-muted);
@@ -611,7 +613,7 @@ main {
   right: 10px;
   color: var(--color-text-muted);
   opacity: 0.5;
-  font-size: 12px;
+  font-size: 0.923rem;
   pointer-events: none;
   z-index: 2;
 }
@@ -637,7 +639,7 @@ main {
   background-color: var(--color-text);
   color: var(--color-bg);
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: 1.077rem;
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -650,7 +652,7 @@ main {
 }
 
 .banner-data .banner-sub {
-  font-size: 11px;
+  font-size: 0.846rem;
   opacity: 0.7;
   margin-top: 2px;
 }
@@ -682,7 +684,7 @@ main {
   color: var(--color-text-muted);
   font-style: italic;
   text-align: center;
-  font-size: 12px;
+  font-size: 0.923rem;
   opacity: 0.6;
 }
 
@@ -727,7 +729,7 @@ main {
   padding-top: 8px;
   border-top: 1px dashed var(--color-text-muted);
   color: var(--color-primary);
-  font-size: 11px;
+  font-size: 0.846rem;
   text-decoration: none;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -751,7 +753,7 @@ main {
 }
 .bilibili-desc {
   color: var(--color-text-muted);
-  font-size: 11px;
+  font-size: 0.846rem;
   margin: 0;
 }
 .bilibili-btn {
@@ -763,7 +765,7 @@ main {
   padding: 10px 14px;
   background: var(--color-text);
   color: var(--color-bg);
-  font-size: 15px;
+  font-size: 1.154rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-decoration: none;
@@ -841,7 +843,7 @@ main {
   padding: 5px 12px;
   background: var(--color-text);
   color: var(--color-bg);
-  font-size: 11px;
+  font-size: 0.846rem;
   text-decoration: none;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -863,14 +865,14 @@ main {
   gap: 6px;
   padding: 12px 16px;
   border-top: 1px dashed var(--color-text-muted);
-  font-size: 12px;
+  font-size: 0.923rem;
   justify-content: center;
   align-items: center;
 }
 
 .pager-btn {
   font-family: inherit;
-  font-size: 12px;
+  font-size: 0.923rem;
   background: transparent;
   color: var(--color-text-muted);
   border: 1px solid var(--color-text-muted);
@@ -911,8 +913,8 @@ main {
 
 .tree li {
   align-items: baseline;
-  padding-left: 4px;
-  font-size: 13px;
+  padding: 2px 0 2px 4px;
+  font-size: 1rem;
   display: flex;
 }
 
@@ -946,7 +948,7 @@ main {
   letter-spacing: 0.05em;
   opacity: 0.6;
   margin-bottom: 8px;
-  font-size: 11px;
+  font-size: 0.846rem;
   font-weight: 500;
 }
 
@@ -971,7 +973,7 @@ main {
 /* 手机端 */
 @media (max-width: 600px) {
   .article {
-    font-size: 16px;
+    font-size: 1.231rem;
     padding: 16px 20px;
   }
 }
@@ -979,7 +981,7 @@ main {
 /* 4K */
 @media (min-width: 2000px) {
   .article {
-    font-size: 18px;
+    font-size: 1.385rem;
     max-width: 900px;
     padding: 48px 64px;
   }
@@ -988,7 +990,7 @@ main {
 
 
 .article h1 {
-  font-size: 22px;
+  font-size: 1.692rem;
   font-weight: 700;
   margin-bottom: 8px;
   color: var(--color-text);
@@ -996,21 +998,21 @@ main {
 
 .article .article-meta {
   color: var(--color-text-muted);
-  font-size: 12px;
+  font-size: 0.923rem;
   margin-bottom: 24px;
   display: flex;
   gap: 12px;
 }
 
 .article h2 {
-  font-size: 16px;
+  font-size: 1.231rem;
   font-weight: 700;
   margin: 24px 0 8px;
   color: var(--color-primary);
 }
 
 .article h3 {
-  font-size: 14px;
+  font-size: 1.077rem;
   font-weight: 700;
   margin: 16px 0 6px;
 }
@@ -1023,7 +1025,7 @@ main {
 .article code {
   background: color-mix(in srgb, var(--color-text) 10%, transparent);
   padding: 1px 5px;
-  font-size: 12px;
+  font-size: 0.923rem;
   border-radius: 0;
 }
 
@@ -1033,7 +1035,7 @@ main {
   padding: 12px 16px;
   overflow-x: auto;
   margin: 12px 0;
-  font-size: 12px;
+  font-size: 0.923rem;
   line-height: 1.5;
 }
 
@@ -1088,14 +1090,14 @@ main {
 }
 
 .article h1 {
-  font-size: 22px;
+  font-size: 1.692rem;
   font-weight: 700;
   margin-bottom: 8px;
   color: var(--color-text);
 }
 
 .article h2 {
-  font-size: 16px;
+  font-size: 1.231rem;
   font-weight: 700;
   margin: 28px 0 10px;
   color: var(--color-primary);
@@ -1104,7 +1106,7 @@ main {
 }
 
 .article h3 {
-  font-size: 14px;
+  font-size: 1.077rem;
   font-weight: 700;
   margin: 20px 0 8px;
   color: var(--color-text);
@@ -1113,7 +1115,7 @@ main {
 .article h4,
 .article h5,
 .article h6 {
-  font-size: 13px;
+  font-size: 1rem;
   font-weight: 700;
   margin: 16px 0 6px;
   color: var(--color-text-muted);
@@ -1150,7 +1152,7 @@ main {
   background: color-mix(in srgb, var(--color-text) 10%, transparent);
   color: var(--color-primary);
   padding: 1px 6px;
-  font-size: 12px;
+  font-size: 0.923rem;
   font-family: 'JetBrains Mono', 'Spline Sans Mono', monospace;
   border-radius: 0;
 }
@@ -1161,7 +1163,7 @@ main {
   padding: 12px 16px;
   overflow-x: auto;
   margin: 14px 0;
-  font-size: 12px;
+  font-size: 0.923rem;
   line-height: 1.6;
   font-family: 'JetBrains Mono', 'Spline Sans Mono', monospace;
   position: relative;
@@ -1174,7 +1176,7 @@ main {
   top: 6px;
   right: 6px;
   padding: 3px 8px;
-  font-size: 10px;
+  font-size: 0.769rem;
   font-family: var(--font-mono);
   background: color-mix(in srgb, #d4d4d4 12%, transparent);
   color: #d4d4d4;
@@ -1202,7 +1204,7 @@ pre:hover .copy-btn {
   position: absolute;
   top: 4px;
   right: 8px;
-  font-size: 10px;
+  font-size: 0.769rem;
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -1277,7 +1279,7 @@ pre:hover .copy-btn {
   width: 100%;
   border-collapse: collapse;
   margin: 14px 0;
-  font-size: 12px;
+  font-size: 0.923rem;
 }
 
 .article th,
@@ -1292,7 +1294,7 @@ pre:hover .copy-btn {
   color: var(--color-text-inverted);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 0.846rem;
   letter-spacing: 0.05em;
 }
 
@@ -1310,7 +1312,7 @@ pre:hover .copy-btn {
   background: var(--color-text);
   color: var(--color-text-inverted);
   padding: 1px 6px;
-  font-size: 11px;
+  font-size: 0.846rem;
   font-family: inherit;
   border: 1px solid var(--color-text);
   border-radius: 2px;
@@ -1359,7 +1361,7 @@ pre:hover .copy-btn {
   background: 0 0;
   border: none;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 0.923rem;
   padding: 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -1413,7 +1415,7 @@ pre:hover .copy-btn {
 
   .list-item .date {
     width: auto;
-    font-size: 10px;
+    font-size: 0.769rem;
     letter-spacing: 0.1em;
     line-height: 1;
   }
@@ -1421,13 +1423,13 @@ pre:hover .copy-btn {
   .list-item .title {
     width: 100%;
     line-height: 1.45;
-    font-size: 14px;
+    font-size: 1.077rem;
   }
 
   .list-item .tag {
     align-self: flex-start;
     margin-top: 2px;
-    font-size: 9px;
+    font-size: 0.692rem;
   }
 
   .list-item .arrow {
@@ -1442,7 +1444,7 @@ pre:hover .copy-btn {
 .article pre code.hljs {
   padding: 0;
   background: transparent;
-  font-size: 12px;
+  font-size: 0.923rem;
   line-height: 1.6;
   font-family: 'JetBrains Mono', 'Spline Sans Mono', monospace;
   color: inherit;
@@ -1454,7 +1456,7 @@ pre:hover .copy-btn {
   position: absolute;
   top: 4px;
   right: 8px;
-  font-size: 10px;
+  font-size: 0.769rem;
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -1488,7 +1490,7 @@ pre:hover .copy-btn {
   background: color-mix(in srgb, #1e1e1e 10%, transparent);
   color: var(--color-primary);
   padding: 1px 6px;
-  font-size: 12px;
+  font-size: 0.923rem;
   font-family: 'JetBrains Mono', 'Spline Sans Mono', monospace;
   border-radius: 0;
 }
