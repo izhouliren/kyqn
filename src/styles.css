@@ -981,7 +981,7 @@ main {
 /* 手机端 */
 @media (max-width: 600px) {
   .article {
-    font-size: 1.231rem;
+    font-size: 0.923rem;
     padding: 16px 20px;
   }
 }
