@@ -1021,4 +1021,35 @@ main {
   .terminal-body {
     padding: 12px;
   }
+
+  /* 窄屏 list-item：垂直堆叠，间距重新调 */
+  .list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 12px 14px;
+  }
+
+  .list-item .date {
+    width: auto;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    line-height: 1;
+  }
+
+  .list-item .title {
+    width: 100%;
+    line-height: 1.45;
+    font-size: 14px;
+  }
+
+  .list-item .tag {
+    align-self: flex-start;
+    margin-top: 2px;
+    font-size: 9px;
+  }
+
+  .list-item .arrow {
+    display: none; /* 触屏用不到 hover arrow */
+  }
 }
