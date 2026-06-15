@@ -11,6 +11,9 @@
   --color-text-inverted: #f8f8f8;
   --color-primary: #e94f0d;
   --font-mono: 'Spline Sans Mono', 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+  --font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Source Han Serif CN', 'Songti SC', SimSun, '宋体', serif;
+  --font-sans: 'Noto Sans SC', 'Source Han Sans SC', 'Source Han Sans CN', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-site: 'SiteFont', 'Spline Sans Mono', 'Noto Sans SC', 'PingFang SC', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -54,7 +57,7 @@ html {
 body {
   color: var(--color-text);
   background-color: var(--color-bg);
-  font-family: var(--font-mono);
+  font-family: var(--font-site); /* SiteFont: 英文 mono + 中文思源黑体 */
   font-size: 13px;
   line-height: 1.5;
   min-height: 100vh;
@@ -569,6 +572,288 @@ main {
   opacity: 1;
 }
 
+/* ==========================================================================
+   Hero（大框 + 流动方块动画）
+   ========================================================================== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.hero-top {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.hero-top .main-block {
+  flex: 2;
+  min-height: 380px;
+}
+
+.main-block {
+  border: 1px solid var(--color-text);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 2;
+  min-height: 360px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-hotkey {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.canvas-wrapper {
+  flex: 1;
+  width: 100%;
+  min-height: 280px;
+  position: relative;
+}
+
+.branches-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  image-rendering: pixelated;
+}
+
+.banner-data {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  padding: 10px 14px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  position: relative;
+}
+
+.banner-data .banner-title {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.banner-data .banner-sub {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+.side-block {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+  min-width: 0;
+}
+
+.side-block .panel.terminal-window {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-block .panel.terminal-window .terminal-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.placeholder-text {
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.side-block .panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+@media (width <= 768px) {
+  .hero-top {
+    flex-direction: column;
+  }
+  .hero-top .main-block {
+    min-height: 280px;
+  }
+  .side-block {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .side-block .panel {
+    flex: calc(50% - 4px);
+    min-width: 200px;
+  }
+}
+
+@media (width <= 480px) {
+  .side-block {
+    flex-direction: column;
+  }
+  .side-block .panel {
+    flex: none;
+    min-width: unset;
+  }
+}
+
+
+/* read more 链接 */
+.read-more-link {
+  display: block;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--color-text-muted);
+  color: var(--color-primary);
+  font-size: 11px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: right;
+  opacity: 0.8;
+}
+.read-more-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* B 站 panel */
+.bilibili-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  text-align: center;
+}
+.bilibili-desc {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  margin: 0;
+}
+.bilibili-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border: none;
+  transition: background 0.1s;
+}
+.bilibili-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverted);
+}
+.bilibili-icon {
+  display: inline-flex;
+  align-items: center;
+  height: 12px;
+}
+.bilibili-icon svg {
+  display: block;
+}
+.bilibili-text {
+  display: inline-block;
+  line-height: 1;
+}
+/* ==========================================================================
+   About 紧凑版（侧栏里的小块）
+   ========================================================================== */
+/* 桌面端 13px，小屏最低 12px */
+.about-compact {
+  font-size: clamp(12px, 1.1vw + 8px, 13px);
+  line-height: 1.55;
+}
+.about-compact p {
+  margin-bottom: 6px;
+}
+/* tree 里的 key:val 行 */
+.about-compact .tree {
+  font-size: clamp(10.5px, 0.9vw + 7px, 12px);
+  gap: 2px;
+}
+.about-compact .tree .key {
+  opacity: 0.6;
+}
+.about-compact .section-label {
+  font-size: clamp(9.5px, 0.8vw + 6px, 11px);
+  margin-top: 10px;
+  margin-bottom: 4px;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.about-compact {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* 主体内容占满空间，超出隐藏 */
+.about-compact .about-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  /* 底部渐变 mask 提示有更多内容 */
+  mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 30px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 30px), transparent 100%);
+}
+
+/* read more 永远在底部可见 */
+.read-more-link {
+  display: inline-block;
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin: 8px 0 0;
+  padding: 5px 12px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 11px;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+  transition: background 0.1s;
+}
+.read-more-link:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverted);
+}
 /* ==========================================================================
    分页
    ========================================================================== */

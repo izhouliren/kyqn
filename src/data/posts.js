@@ -2,10 +2,10 @@
 // 文章按数组顺序展示，可以把重要文章放前面
 
 export const about = {
-  name: 'kaiyuanqingnian',
-  role: 'tinkerer · linux · risc-v · self-hosted',
-  location: 'Shanghai, CN',
-  email: 'kaiyuanqingnian@…',
+  // name: 'kaiyuanqingnian',
+  // role: 'tinkerer · linux · risc-v · self-hosted',
+  // location: 'Shanghai, CN',
+  // email: 'kaiyuanqingnian@…',
   intro: [
     '一个 <strong>爱折腾</strong>的人。日常和 Linux 内核、RISC-V 板子、自部署服务打交道。',
     '这里记录我踩过的坑、做过的实验、跑过的基准。',

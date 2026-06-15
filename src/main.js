@@ -1,4 +1,6 @@
 import './styles.css';
+// SiteFont — 自定组合字体（Latin→mono, CJK→Noto Sans SC）
+import './site-font.css';
 import { applyStoredTheme } from './utils/theme.js';
 import { route, startRouter } from './utils/router.js';
 import { renderHeader } from './components/header.js';
