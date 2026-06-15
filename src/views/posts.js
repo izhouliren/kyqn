@@ -1,6 +1,6 @@
 import { posts } from '../data/posts.js';
 import { navigate } from '../utils/router.js';
-import { loadPost } from '../utils/markdown.js';
+import { loadPost, prefetch } from '../utils/markdown.js';
 
 export function postsView(main) {
   main.innerHTML = '';
@@ -29,6 +29,9 @@ export function postsView(main) {
       <span class="arrow">→</span>
     `;
     li.addEventListener('click', () => navigate('/posts/' + p.slug));
+    // hover/touchstart 就预取
+    li.addEventListener('mouseenter', () => prefetch(p.slug));
+    li.addEventListener('touchstart', () => prefetch(p.slug), { passive: true });
     ul.appendChild(li);
   });
   body.appendChild(ul);

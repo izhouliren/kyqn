@@ -1,6 +1,7 @@
 import { logoArt, bootSequence, fillDots } from '../utils/ascii.js';
 import { posts, about } from '../data/posts.js';
 import { navigate } from '../utils/router.js';
+import { prefetch } from '../utils/markdown.js';
 
 export function homeView(main) {
   main.innerHTML = '';
@@ -74,6 +75,8 @@ export function homeView(main) {
       <span class="arrow">→</span>
     `;
     li.addEventListener('click', () => navigate('/posts/' + p.slug));
+    li.addEventListener('mouseenter', () => prefetch(p.slug));
+    li.addEventListener('touchstart', () => prefetch(p.slug), { passive: true });
     ul.appendChild(li);
   });
   recentBody.appendChild(ul);

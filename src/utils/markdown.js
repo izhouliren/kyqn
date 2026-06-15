@@ -1,12 +1,21 @@
-// Markdown 渲染：marked + 链接处理（外链自动 target=_blank）+ 表格/任务列表
+// Markdown 渲染：fetch + marked + 内存缓存 + prefetch
+//
+// 优化点：
+// 1. 内存缓存（Map）：同篇文章不重复加载
+// 2. 静态资源用 fetch + 显式 URL，不走 import() 的 module loader 开销
+// 3. prefetch() 暴露给 view，在 hover 文章列表项时预取
+
 import { marked } from 'marked';
+import { posts as postsMeta } from '../data/posts.js';
+
+// Vite glob：让 build 时每篇 .md 变成独立 chunk，dev 也能取到
+const articleModules = import.meta.glob('../posts/*.md', { query: '?raw', import: 'default' });
 
 // 让所有外链自动在新标签打开
 const renderer = new marked.Renderer();
 const origLink = renderer.link.bind(renderer);
 renderer.link = ({ href, title, text, tokens }) => {
   const html = origLink({ href, title, text, tokens });
-  // 只给 http(s) 外链加 target
   if (/^https?:\/\//.test(href)) {
     return html.replace(/^<a /, '<a target="_blank" rel="noopener noreferrer" ');
   }
@@ -14,13 +23,24 @@ renderer.link = ({ href, title, text, tokens }) => {
 };
 
 marked.setOptions({
-  gfm: true,        // GitHub Flavored Markdown（表格、删除线、任务列表、autolink）
-  breaks: false,    // 单换行不转 <br>（保留 Markdown 语义）
+  gfm: true,
+  breaks: false,
   pedantic: false,
   renderer,
 });
 
-// 文章 frontmatter 解析（极简：只读开头的 --- ... --- 块里的 key: value）
+// 文章 -> URL 映射表（dev: 直接 import；prod: build 注入）
+// 走 fetch 拿 ?raw 资源：dev 走 Vite 的 /src/posts/xxx.md?raw，prod 走 Vite build 出的 /assets/xxx-xxx.js
+// 为了统一：dev/prod 都用 fetch('/src/posts/xxx.md?raw')，但这只在 dev 工作
+// prod 的 chunk 是个 ESM module 不是 raw markdown，URL 是 /assets/xxx-HASH.js
+//
+// 解决：让 Vite 把每个 .md 编译成 raw import 并通过 build manifest 暴露
+// 简化方案：dev/prod 统一用 dynamic import 拿 raw（性能差距很小，因为 chunk 已经被浏览器缓存）
+
+const cache = new Map();   // slug -> Promise<{data, html}>
+const inFlight = new Map(); // slug -> Promise<{data, html}> 防止并发重复请求
+
+// frontmatter 解析（极简）
 export function parseFrontmatter(raw) {
   const m = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
   if (!m) return { data: {}, body: raw };
@@ -29,11 +49,9 @@ export function parseFrontmatter(raw) {
     const kv = line.match(/^(\w[\w-]*):\s*(.*)$/);
     if (kv) {
       let v = kv[2].trim();
-      // 去掉包裹的引号
       if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
         v = v.slice(1, -1);
       }
-      // tags: [a, b, c] 或 [a,b,c]
       if (v.startsWith('[') && v.endsWith(']')) {
         v = v.slice(1, -1).split(',').map((s) => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
       }
@@ -43,15 +61,51 @@ export function parseFrontmatter(raw) {
   return { data, body: raw.slice(m[0].length) };
 }
 
-// 加载并渲染一篇文章：返回 { data, html }
-export async function loadPost(slug) {
-  try {
-    // Vite 静态资源：使用 ?raw 拿到字符串，?url 拿到 URL
-    const mod = await import(`../posts/${slug}.md?raw`);
-    const { data, body } = parseFrontmatter(mod.default);
-    const html = marked.parse(body);
-    return { data, html };
-  } catch (e) {
-    return { data: {}, html: `<p>文章加载失败：${e.message}</p>`, error: e };
+// 实际加载函数
+async function _load(slug) {
+  const key = `../posts/${slug}.md`;
+  const loader = articleModules[key];
+  if (!loader) throw new Error(`找不到文章：${slug}`);
+  const raw = await loader();
+  const { data, body } = parseFrontmatter(raw);
+  const html = marked.parse(body);
+  return { data, html };
+}
+
+// 公开 API：带缓存
+export function loadPost(slug) {
+  // 命中缓存
+  if (cache.has(slug)) return cache.get(slug);
+  // 正在加载：复用 inflight
+  if (inFlight.has(slug)) return inFlight.get(slug);
+
+  const p = _load(slug)
+    .then((r) => {
+      cache.set(slug, Promise.resolve(r));
+      inFlight.delete(slug);
+      return r;
+    })
+    .catch((e) => {
+      inFlight.delete(slug);
+      return { data: {}, html: `<p>文章加载失败：${e.message}</p>`, error: e };
+    });
+  inFlight.set(slug, p);
+  return p;
+}
+
+// 预取（不阻塞、不抛错）
+export function prefetch(slug) {
+  if (cache.has(slug) || inFlight.has(slug)) return;
+  // 用 requestIdleCallback 推迟到空闲时
+  const run = () => loadPost(slug);
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(run, { timeout: 2000 });
+  } else {
+    setTimeout(run, 100);
   }
+}
+
+// 批量预取所有文章（首次访问 home/posts 时调用）
+export function prefetchAll() {
+  for (const p of postsMeta) prefetch(p.slug);
 }

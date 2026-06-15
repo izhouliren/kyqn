@@ -6,6 +6,14 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     chunkSizeWarningLimit: 1500,
+    rollupOptions: {
+      output: {
+        // 把 marked 拆成独立 chunk（手动分包）
+        manualChunks: {
+          marked: ['marked'],
+        },
+      },
+    },
   },
   server: {
     host: '0.0.0.0',

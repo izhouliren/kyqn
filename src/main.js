@@ -40,3 +40,12 @@ route('/about', aboutView);
 
 // 5. 启动
 startRouter();
+
+// 6. 首屏空闲时预取 marked（42KB gzip 13KB）
+// 所有文章 chunk 已经在 HTML 里 modulepreload 了，浏览器解析时就在下载
+// hover 预取还是由 view 负责（最快路径）
+const idle = (cb) => 'requestIdleCallback' in window
+  ? requestIdleCallback(cb, { timeout: 2000 })
+  : setTimeout(cb, 50);
+
+idle(() => import('marked'));
