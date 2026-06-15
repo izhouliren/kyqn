@@ -1,26 +1,18 @@
 {
-  "name": "kyqn",
-  "version": "1.0.0",
-  "description": "",
-  "homepage": "https://github.com/izhouliren/kyqn#readme",
-  "bugs": {
-    "url": "https://github.com/izhouliren/kyqn/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/izhouliren/kyqn.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "index.js",
+  "name": "personal-blog",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "deploy": "vercel --prod"
   },
   "devDependencies": {
-    "vitepress": "^2.0.0-alpha.15"
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "marked": "^18.0.5"
   }
 }
