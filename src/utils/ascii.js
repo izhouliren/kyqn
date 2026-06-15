@@ -20,7 +20,7 @@ export function bootLine({ spinner = '>', label, value, pending = false }) {
 
 // 模拟 git-merge 那个 boot 序列
 export const bootSequence = () => [
-  bootLine({ label: 'initializing izhouliren // blog', value: 'OK' }),
+  bootLine({ label: 'initializing kaiyuanqingnian // blog', value: 'OK' }),
   bootLine({ label: 'loading preferences', value: 'OK' }),
   bootLine({ label: 'fetching posts from git', value: 'OK' }),
   bootLine({ label: 'parsing markdown', value: 'OK' }),
