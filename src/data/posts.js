@@ -1,6 +1,3 @@
-// Posts 元数据（不再含 excerpt，正文从 src/posts/<slug>.md 加载）
-// 文章按数组顺序展示，可以把重要文章放前面
-
 export const about = {
   // name: 'kaiyuanqingnian',
   // role: 'tinkerer · linux · risc-v · self-hosted',
@@ -53,29 +50,29 @@ export const posts = [
     slug: 'linux-kernel-viz',
     title: 'Linux Kernel 贡献数据可视化',
     date: '2026-06-14',
-    tags: ['viz', 'linux', 'vercel'],
+    tags: ['linux', 'viz', 'echarts'],
   },
   {
-    slug: 'hello-risc-v',
+    slug: 'openclaw-node-riscv',
     title: '在 RISC-V 板子上跑 OpenClaw node',
     date: '2026-06-14',
-    tags: ['risc-v', 'openclaw'],
+    tags: ['openclaw', 'risc-v'],
   },
   {
     slug: 'cron-isolated-mode',
     title: 'Cron 任务必须用 isolated 模式',
     date: '2026-06-12',
-    tags: ['openclaw', 'cron', 'lesson'],
+    tags: ['openclaw', 'dev'],
   },
   {
     slug: 'diy-nas-build',
     title: 'DIY NAS：从零搭一台 12TB 的家用存储',
     date: '2026-06-12',
-    tags: ['hardware', 'storage'],
+    tags: ['nas', 'self-hosted'],
   },
   {
-    slug: 'pi5-cooling-test',
-    title: '树莓派 5 散热对比：官方风扇 vs 第三方塔式',
+    slug: 'raspberry-pi5-cooling',
+    title: '树莓派 5 散热对比',
     date: '2026-06-10',
     tags: ['pi', 'hardware'],
   },
@@ -83,31 +80,31 @@ export const posts = [
     slug: 'nginx-reverse-proxy',
     title: '用 nginx 给自部署服务做反代 + HTTPS',
     date: '2026-06-08',
-    tags: ['nginx', 'self-host'],
+    tags: ['nginx', 'network'],
   },
   {
-    slug: 'cron-isolated-deep',
-    title: 'Cron 任务卡死的根因排查（deep dive）',
+    slug: 'cron-root-cause',
+    title: 'Cron 任务卡死的根因排查',
     date: '2026-06-06',
-    tags: ['openclaw', 'cron', 'debug'],
+    tags: ['openclaw', 'dev'],
   },
   {
     slug: 'samba-permission-trap',
     title: 'Samba 共享权限的 4 个常见坑',
     date: '2026-06-04',
-    tags: ['samba', 'linux'],
+    tags: ['linux', 'nas', 'samba'],
   },
   {
-    slug: 'markdown-render-perf',
+    slug: 'marked-render-performance',
     title: 'marked 渲染 1000 篇文章要多久？',
     date: '2026-06-02',
-    tags: ['perf', 'js'],
+    tags: ['dev', 'performance'],
   },
   {
     slug: 'git-merge-clone',
     title: '用 git-merge.com 的视觉做个人博客',
     date: '2026-05-30',
-    tags: ['blog', 'css'],
+    tags: ['dev', 'blog', 'design'],
   },
   {
     slug: 'risc-v-cooling-quirk',
@@ -119,27 +116,18 @@ export const posts = [
 
 export const projects = [
   {
-    name: 'openclaw',
-    desc: '多节点 AI agent 集群',
-    link: 'https://github.com/izhouliren/openclaw',
-    tag: 'infra',
+    name: 'linux-kernel-viz',
+    desc: 'Linux Kernel 贡献数据可视化 — ECharts + CSV',
+    url: 'https://linux-kernel-viz.vercel.app',
   },
   {
-    name: 'linux-kernel-viz',
-    desc: '内核贡献数据可视化',
-    link: 'https://github.com/izhouliren/linux-kernel-viz',
-    tag: 'viz',
+    name: 'kyqn (blog)',
+    desc: '本博客源码，Vite + vanilla JS + marked',
+    url: 'https://github.com/izhouliren/kyqn',
   },
   {
     name: 'helloworld',
-    desc: 'kernel commit 分析数据 + 爬虫',
-    link: 'https://github.com/izhouliren/helloworld',
-    tag: 'data',
-  },
-  {
-    name: 'personal-blog',
-    desc: '本站，git-merge 风格 + Vite + marked',
-    link: '#',
-    tag: 'meta',
+    desc: 'RISC-V 基准测试教程 & 资源合集',
+    url: 'https://gitcode.com/ozhouliren/helloworld',
   },
 ];

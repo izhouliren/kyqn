@@ -2,6 +2,7 @@ import { posts, about } from '../data/posts.js';
 import { navigate } from '../utils/router.js';
 import { prefetch } from '../utils/markdown.js';
 import { startAsciiFlow } from '../utils/canvas-animation.js';
+import { createPager } from '../utils/pager.js';
 
 // 从 canvas-animation.js 提取的 F 数组
 // 简化：直接复用
@@ -109,9 +110,8 @@ export function homeView(main) {
   const ul = document.createElement('ul');
   ul.className = 'list';
   postsBody.appendChild(ul);
-  const pager = document.createElement('div');
-  pager.className = 'pager';
-  postsBody.appendChild(pager);
+  const pager = createPager();
+  postsBody.appendChild(pager.container);
   postsPanel.appendChild(postsBody);
   hero.appendChild(postsPanel);
 
@@ -122,7 +122,6 @@ export function homeView(main) {
 
   // ===== 分页 + 列表渲染 =====
   const totalPages = Math.max(1, Math.ceil(posts.length / PAGE_SIZE));
-  const initialPage = 1;
 
   function renderPage(page) {
     const safePage = Math.max(1, Math.min(totalPages, page | 0));
@@ -148,37 +147,10 @@ export function homeView(main) {
       ul.appendChild(li);
     });
 
-    pager.innerHTML = '';
-    if (totalPages <= 1) {
-      pager.style.display = 'none';
-      return;
-    }
-    pager.style.display = '';
-    const firstBtn = makePagerBtn('« first', safePage === 1, () => renderPage(1));
-    pager.appendChild(firstBtn);
-    const prevBtn = makePagerBtn('‹ prev', safePage === 1, () => renderPage(safePage - 1));
-    pager.appendChild(prevBtn);
-    for (let i = 1; i <= totalPages; i++) {
-      const b = makePagerBtn(String(i), false, () => renderPage(i));
-      if (i === safePage) b.classList.add('active');
-      pager.appendChild(b);
-    }
-    const nextBtn = makePagerBtn('next ›', safePage === totalPages, () => renderPage(safePage + 1));
-    pager.appendChild(nextBtn);
-    const lastBtn = makePagerBtn('last »', safePage === totalPages, () => renderPage(totalPages));
-    pager.appendChild(lastBtn);
+    pager.render(safePage, totalPages, renderPage);
   }
 
-  function makePagerBtn(label, disabled, onClick) {
-    const b = document.createElement('button');
-    b.className = 'pager-btn';
-    b.textContent = label;
-    if (disabled) b.disabled = true;
-    b.addEventListener('click', onClick);
-    return b;
-  }
-
-  renderPage(initialPage);
+  renderPage(1);
 
   return () => stopAnim();
 }

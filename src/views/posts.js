@@ -1,4 +1,5 @@
 import { posts } from '../data/posts.js';
+import { createPager } from '../utils/pager.js';
 import { navigate } from '../utils/router.js';
 import { loadPost, prefetch } from '../utils/markdown.js';
 
@@ -18,23 +19,40 @@ export function postsView(main) {
 
   const ul = document.createElement('ul');
   ul.className = 'list';
-  posts.forEach((p, i) => {
-    const li = document.createElement('li');
-    li.className = 'list-item';
-    if (i === posts.length - 1) li.classList.add('last');
-    li.innerHTML = `
-      <span class="date">${p.date}</span>
-      <span class="title">${p.pinned ? '★ ' : ''}${p.title}</span>
-      <span class="tag">${(p.tags[0] || 'misc').toUpperCase()}</span>
-      <span class="arrow">→</span>
-    `;
-    li.addEventListener('click', () => navigate('/posts/' + p.slug));
-    // hover/touchstart 就预取
-    li.addEventListener('mouseenter', () => prefetch(p.slug));
-    li.addEventListener('touchstart', () => prefetch(p.slug), { passive: true });
-    ul.appendChild(li);
-  });
   body.appendChild(ul);
+
+  const pager = createPager();
+  body.appendChild(pager.container);
+
+  const POSTS_PAGE_SIZE = 30;
+  const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PAGE_SIZE));
+
+  function renderPostsPage(page) {
+    const safe = Math.max(1, Math.min(totalPages, page | 0));
+    const start = (safe - 1) * POSTS_PAGE_SIZE;
+    const end = start + POSTS_PAGE_SIZE;
+    const pagePosts = posts.slice(start, end);
+
+    ul.innerHTML = '';
+    pagePosts.forEach((p, i) => {
+      const li = document.createElement('li');
+      li.className = 'list-item';
+      if (i === pagePosts.length - 1) li.classList.add('last');
+      li.innerHTML = `
+        <span class="date">${p.date}</span>
+        <span class="title">${p.pinned ? '★ ' : ''}${p.title}</span>
+        <span class="tag">${(p.tags[0] || 'misc').toUpperCase()}</span>
+        <span class="arrow">→</span>
+      `;
+      li.addEventListener('click', () => navigate('/posts/' + p.slug));
+      li.addEventListener('mouseenter', () => prefetch(p.slug));
+      li.addEventListener('touchstart', () => prefetch(p.slug), { passive: true });
+      ul.appendChild(li);
+    });
+
+    pager.render(safe, totalPages, renderPostsPage);
+  }
+  renderPostsPage(1);
   wrap.appendChild(body);
   main.appendChild(wrap);
 }
