@@ -1,6 +1,6 @@
 ---
 title: 一键配好 Arch Linux 的中文输入法
-date: 2025-05-17
+date: 2026-06-15
 tags: [linux, arch, fcitx5, 脚本]
 ---
 

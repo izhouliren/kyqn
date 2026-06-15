@@ -25,17 +25,17 @@ export const about = {
 // 列表里只放"摘要信息"，正文走 .md 文件
 export const posts = [
   {
-    slug: 'arch-chinese-input-method-script',
-    title: '一键配好 Arch Linux 的中文输入法',
-    date: '2025-05-17',
-    tags: ['linux', 'arch', 'fcitx5'],
-  },
-  {
     slug: 'hello-world',
     title: 'Hello, world. 重新开始写博客。',
     date: '2026-06-15',
     tags: ['meta'],
     pinned: true,
+  },
+  {
+    slug: 'arch-chinese-input-method-script',
+    title: '一键配好 Arch Linux 的中文输入法',
+    date: '2026-06-15',
+    tags: ['linux', 'arch', 'fcitx5'],
   },
   {
     slug: 'spacemit-k3-llama-cpp-benchmark',
@@ -56,10 +56,64 @@ export const posts = [
     tags: ['viz', 'linux', 'vercel'],
   },
   {
+    slug: 'hello-risc-v',
+    title: '在 RISC-V 板子上跑 OpenClaw node',
+    date: '2026-06-14',
+    tags: ['risc-v', 'openclaw'],
+  },
+  {
     slug: 'cron-isolated-mode',
     title: 'Cron 任务必须用 isolated 模式',
     date: '2026-06-12',
     tags: ['openclaw', 'cron', 'lesson'],
+  },
+  {
+    slug: 'diy-nas-build',
+    title: 'DIY NAS：从零搭一台 12TB 的家用存储',
+    date: '2026-06-12',
+    tags: ['hardware', 'storage'],
+  },
+  {
+    slug: 'pi5-cooling-test',
+    title: '树莓派 5 散热对比：官方风扇 vs 第三方塔式',
+    date: '2026-06-10',
+    tags: ['pi', 'hardware'],
+  },
+  {
+    slug: 'nginx-reverse-proxy',
+    title: '用 nginx 给自部署服务做反代 + HTTPS',
+    date: '2026-06-08',
+    tags: ['nginx', 'self-host'],
+  },
+  {
+    slug: 'cron-isolated-deep',
+    title: 'Cron 任务卡死的根因排查（deep dive）',
+    date: '2026-06-06',
+    tags: ['openclaw', 'cron', 'debug'],
+  },
+  {
+    slug: 'samba-permission-trap',
+    title: 'Samba 共享权限的 4 个常见坑',
+    date: '2026-06-04',
+    tags: ['samba', 'linux'],
+  },
+  {
+    slug: 'markdown-render-perf',
+    title: 'marked 渲染 1000 篇文章要多久？',
+    date: '2026-06-02',
+    tags: ['perf', 'js'],
+  },
+  {
+    slug: 'git-merge-clone',
+    title: '用 git-merge.com 的视觉做个人博客',
+    date: '2026-05-30',
+    tags: ['blog', 'css'],
+  },
+  {
+    slug: 'risc-v-cooling-quirk',
+    title: 'SpacemiT K3 散热：风冷 vs 被动散热',
+    date: '2026-05-28',
+    tags: ['risc-v', 'hardware'],
   },
 ];
 
