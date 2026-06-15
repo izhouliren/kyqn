@@ -25,6 +25,12 @@ export const about = {
 // 列表里只放"摘要信息"，正文走 .md 文件
 export const posts = [
   {
+    slug: 'arch-chinese-input-method-script',
+    title: '一键配好 Arch Linux 的中文输入法',
+    date: '2025-05-17',
+    tags: ['linux', 'arch', 'fcitx5'],
+  },
+  {
     slug: 'hello-world',
     title: 'Hello, world. 重新开始写博客。',
     date: '2026-06-15',
