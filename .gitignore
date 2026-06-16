@@ -6,3 +6,6 @@ dist
 .env
 .env.local
 *.bak
+
+# 本地备份文件（不要 commit）
+*.bak-*
