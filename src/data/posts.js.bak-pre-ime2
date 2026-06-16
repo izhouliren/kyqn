@@ -29,12 +29,6 @@ export const posts = [
     pinned: true,
   },
   {
-    slug: 'spacemit-k3-ime2-debug',
-    title: '调试 SpacemiT K3 的 IME2 加速：从 Bob Johansson 30B 视频到 /dev/tcm_sync_mem 失踪案',
-    date: '2026-06-16',
-    tags: ['risc-v', 'llm', 'debug', 'kernel', 'spacemit-k3'],
-  },
-  {
     slug: 'arch-chinese-input-method-script',
     title: '一键配好 Arch Linux 的中文输入法',
     date: '2026-06-15',
